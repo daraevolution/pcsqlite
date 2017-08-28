@@ -1,0 +1,5 @@
+#!/bin/sh
+g++ versionsqlite.cpp -o versionsqlite -lsqlite3
+g++ openclosesqlite.cpp -o openclosesqlite -lsqlite3
+g++ createtablesqlite.cpp -o createtablesqlite -lsqlite3
+g++ insertsqlite.cpp -o insertsqlite -lsqlite3
