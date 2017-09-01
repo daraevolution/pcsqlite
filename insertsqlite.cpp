@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
   std::string query;
   std::string name;
   std::string surname;
-  int age;
+  std::string age;
   std::string message;
 
   /* Open database */
@@ -43,7 +43,13 @@ int main(int argc, char* argv[])
   std::cout << "Message: " << std::endl;
   std::cin >> message;
 
-  query = "INSERT INTO register2 VALUES(?,?,?,?)";
+  query = "insert into register2 (name, surname,age,message)values("
+  "'" + name + "'" + "," +
+  "'" + surname + "'" + "," + 
+  "'" + age + "'" + "," +
+  "'" + message + "'"
+  ");"
+  ;
 
   /*
     Convert string to char pointer.
