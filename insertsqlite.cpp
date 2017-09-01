@@ -9,7 +9,10 @@ int main(int argc, char* argv[])
   char *error = 0;
   int result;
   std::string query;
-
+  std::string name;
+  std::string surname;
+  std::string age;
+  std::string message;
 
   /* Open database */
   result = sqlite3_open("test.db", &db);
@@ -24,26 +27,30 @@ int main(int argc, char* argv[])
   }
 
   /* Create SQL statement */
-  /*
-    query = "CREATE TABLE register2 ("
-        "`name` VARCHAR, "
-        "`surname` VARCHAR, "
-        "`age` NUMBER, "
-        "`message` TEXT)";
-  */
   /* STRFTIME('%s','now') - Unix timestamp
         DATETIME(STRFTIME('%s','now')) = DATETIME('now') but we can operate with
         the timestamp
   */
-  /*
-  query = "INSERT INTO register2 VALUES ('Israel','Carazo',27,'This is a test');"
-    "INSERT INTO register2 VALUES ('Maite','Soteras',31, 'This is a test again');"
-    "INSERT INTO register2 VALUES ('Javi','Carazo',34, 'This is a test again x2');"
-    "INSERT INTO register2 VALUES ('Marisol','fsff',35, 'This is a test again x3');";
-  */
-  std::cout << "Inserta la query:" << '\n';
-  printf("Inserta la query\n");
-  std::cin >> query;   
+  std::cout << "Inserte los datos:" << "\n";
+  printf("Inserta los datos\n");
+
+  std::cout << "Name: " << "\n";
+  std::cin >> name;
+  std::cout << "Surname: " << std::endl;
+  std::cin >> surname;
+  std::cout << "Age: " << std::endl;
+  std::cin >> age;
+  std::cout << "Message: " << std::endl;
+  std::cin >> message;
+
+  query = "insert into register2 (name, surname,age,message)values("
+  "'" + name + "'" + "," +
+  "'" + surname + "'" + "," + 
+  "'" + age + "'" + "," +
+  "'" + message + "'"
+  ");"
+  ;
+
   /*
     Convert string to char pointer.
     Because the function sqlite3_exec just accept char pointer
@@ -59,7 +66,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    fprintf(stdout, "Tabla creada!\n");
+    fprintf(stdout, "Insercion correcta!\n");
   }
 
   sqlite3_close(db);
